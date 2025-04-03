@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Write a Review - <%= movie.title %></title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Movie Review App</h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/reviews">All Reviews</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <main>
+      <section class="review-form-section">
+        <h2>Write a Review for <%= movie.title %></h2>
+        <div class="movie-info">
+          <h3><%= movie.title %> (<%= movie.year %>)</h3>
+          <p><%= movie.description %></p>
+        </div>
+        
+        <form id="reviewForm" action="/submit-review" method="POST" class="review-form">
+          <input type="hidden" name="movieId" value="<%= movie.id %>">
+          
+          <div class="form-group">
+            <label for="username">Your Name:</label>
+            <input type="text" id="username" name="username" required>
+            <span class="error-message" id="username-error"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="rating">Rating:</label>
+            <select id="rating" name="rating" required>
+              <option value="">Select a rating</option>
+              <option value="5">5 - Excellent</option>
+              <option value="4">4 - Very Good</option>
+              <option value="3">3 - Good</option>
+              <option value="2">2 - Fair</option>
+              <option value="1">1 - Poor</option>
+            </select>
+            <span class="error-message" id="rating-error"></span>
+          </div>
+          
+          <div class="form-group">
+            <label for="comment">Your Review:</label>
+            <textarea id="comment" name="comment" rows="5" required></textarea>
+            <span class="error-message" id="comment-error"></span>
+          </div>
+          
+          <button type="submit" class="btn btn-primary">Submit Review</button>
+        </form>
+      </section>
+    </main>
+    
+    <footer>
+      <p>&copy; 2025 Movie Review App. All rights reserved.</p>
+    </footer>
+  </div>
+  
+  <script src="/js/script.js"></script>
+</body>
+</html>

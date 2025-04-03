@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movie Review App</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Movie Review App</h1>
+      <nav>
+        <ul>
+          <li><a href="/" class="active">Home</a></li>
+          <li><a href="/reviews">All Reviews</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <main>
+      <section class="movies-list">
+        <h2>Available Movies</h2>
+        <div class="movies-grid">
+          <% movies.forEach(movie => { %>
+            <div class="movie-card">
+              <h3><%= movie.title %> (<%= movie.year %>)</h3>
+              <p class="director">Director: <%= movie.director %></p>
+              <p><%= movie.description %></p>
+              <div class="movie-actions">
+                <a href="/movie/<%= movie.id %>" class="btn btn-primary">View Details</a>
+                <a href="/review/<%= movie.id %>" class="btn btn-secondary">Write Review</a>
+              </div>
+            </div>
+          <% }); %>
+        </div>
+      </section>
+    </main>
+    
+    <footer>
+      <p>&copy; 2025 Movie Review App. All rights reserved.</p>
+    </footer>
+  </div>
+  
+  <script src="/js/script.js"></script>
+</body>
+</html>

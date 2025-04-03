@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= movie.title %> - Movie Details</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Movie Review App</h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/reviews">All Reviews</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <main>
+      <section class="movie-details">
+        <div class="movie-header">
+          <h2><%= movie.title %> (<%= movie.year %>)</h2>
+          <a href="/review/<%= movie.id %>" class="btn btn-primary">Write a Review</a>
+        </div>
+        
+        <div class="movie-info">
+          <p><strong>Director:</strong> <%= movie.director %></p>
+          <p><strong>Year:</strong> <%= movie.year %></p>
+          <p><%= movie.description %></p>
+        </div>
+        
+        <div class="movie-reviews">
+          <h3>Reviews (<%= reviews.length %>)</h3>
+          
+          <% if (reviews.length === 0) { %>
+            <p class="no-reviews">No reviews yet. Be the first to review this movie!</p>
+          <% } else { %>
+            <div class="reviews-list">
+              <% reviews.forEach(review => { %>
+                <div class="review-card">
+                  <div class="review-header">
+                    <div class="rating">
+                      <% for (let i = 0; i < 5; i++) { %>
+                        <span class="star <%= i < review.rating ? 'filled' : '' %>">★</span>
+                      <% } %>
+                    </div>
+                  </div>
+                  <p class="review-meta">By <%= review.username %> <% if (review.date) { %> on <%= review.date %> <% } %></p>
+                  <p class="review-content"><%= review.comment %></p>
+                </div>
+              <% }); %>
+            </div>
+          <% } %>
+        </div>
+      </section>
+    </main>
+    
+    <footer>
+      <p>&copy; 2025 Movie Review App. All rights reserved.</p>
+    </footer>
+  </div>
+  
+  <script src="/js/script.js"></script>
+</body>
+</html>
